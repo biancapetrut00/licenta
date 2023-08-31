@@ -1,0 +1,131 @@
+<!-- app/templates/create_post.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Main content container using Bootstrap grid -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Create New Post</h2>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="comment-textarea" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <select class="dropdown-style" id="subject" name="subject">
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Mathematics">Mathematics</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="dropdown-style" id="category" name="category">
+                            <!-- Categories will be populated using JavaScript -->
+                        </select>
+                    </div>
+
+                    <div class="center-container">
+                        <div class="math-symbol-container">
+                            <button class="math-symbol-btn" data-math-symbol="√">√</button>
+                            <button class="math-symbol-btn" data-math-symbol="²">²</button>
+<button class="math-symbol-btn" data-math-symbol="³">³</button>
+                            <button class="math-symbol-btn" data-math-symbol="π">π</button>
+                            <button class="math-symbol-btn" data-math-symbol="∑">∑</button>
+                            <button class="math-symbol-btn" data-math-symbol="∫">∫</button>
+                            <button class="math-symbol-btn" data-math-symbol="∆">∆</button>
+                            <button class="math-symbol-btn" data-math-symbol="≠">≠</button>
+                            <button class="math-symbol-btn" data-math-symbol="≈">≈</button>
+                            <button class="math-symbol-btn" data-math-symbol="°">°</button>
+                            <button class="math-symbol-btn" data-math-symbol="±">±</button>
+                                                        <button class="math-symbol-btn" data-math-symbol="π">π</button>
+                            <button class="math-symbol-btn" data-math-symbol="∑">∑</button>
+                            <button class="math-symbol-btn" data-math-symbol="∫">∫</button>
+                            <button class="math-symbol-btn" data-math-symbol="∆">∆</button>
+                            <button class="math-symbol-btn" data-math-symbol="≠">≠</button>
+                            <button class="math-symbol-btn" data-math-symbol="≈">≈</button>
+                            <button class="math-symbol-btn" data-math-symbol="°">°</button>
+                            <button class="math-symbol-btn" data-math-symbol="±">±</button>
+                                                        <button class="math-symbol-btn" data-math-symbol="π">π</button>
+                            <button class="math-symbol-btn" data-math-symbol="∑">∑</button>
+                            <button class="math-symbol-btn" data-math-symbol="∫">∫</button>
+                            <button class="math-symbol-btn" data-math-symbol="∆">∆</button>
+                            <button class="math-symbol-btn" data-math-symbol="≠">≠</button>
+                            <button class="math-symbol-btn" data-math-symbol="≈">≈</button>
+                            <button class="math-symbol-btn" data-math-symbol="°">°</button>
+                            <button class="math-symbol-btn" data-math-symbol="±">±</button>
+
+                            <!-- Add more buttons for other math symbols -->
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="comment-textarea" id="content" name="content" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="green-button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to update category dropdown based on selected subject
+        const subjectDropdown = document.getElementById('subject');
+        const categoryDropdown = document.getElementById('category');
+
+        // Define categories based on subject
+        const categoriesBySubject = {
+            "Computer Science": [
+                {% for category in categories if category.subject == 'Computer Science' %}
+                    {id: {{ category.id }}, name: "{{ category.categoryName }}"},
+                {% endfor %}
+            ],
+            "Mathematics": [
+                {% for category in categories if category.subject == 'Mathematics' %}
+                    {id: {{ category.id }}, name: "{{ category.categoryName }}"},
+                {% endfor %}
+            ]
+        };
+
+        subjectDropdown.addEventListener('change', () => {
+            const selectedSubject = subjectDropdown.value;
+            const categories = categoriesBySubject[selectedSubject];
+
+            // Populate category dropdown based on selected subject
+            categoryDropdown.innerHTML = ''; // Clear existing options
+            categories.forEach(category => {
+                categoryDropdown.innerHTML += `<option value="${category.id}">${category.name}</option>`;
+            });
+        });
+
+        // Trigger the change event to populate the category dropdown initially
+        subjectDropdown.dispatchEvent(new Event('change'));
+
+
+
+
+
+        // Handling symbols
+        document.addEventListener('DOMContentLoaded', function () {
+            const mathSymbolButtons = document.querySelectorAll('.math-symbol-btn');
+            const mathTextarea = document.getElementById('content');
+
+            mathSymbolButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the default form submission
+                    const mathSymbol = this.getAttribute('data-math-symbol');
+                    const cursorPos = mathTextarea.selectionStart;
+                    const currentValue = mathTextarea.value;
+                    const newValue = currentValue.substring(0, cursorPos) + mathSymbol + currentValue.substring(cursorPos);
+                    mathTextarea.value = newValue;
+                });
+            });
+        });
+
+
+
+
+    </script>
+{% endblock %}

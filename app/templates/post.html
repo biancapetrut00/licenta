@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Display post details here -->
+    <div class="container mt-4">
+        <div class="card border-dark mb-3 card-forum">
+            <div class="card-header">{{ post.subject }}, {{ post.category }}</div>
+            <div class="card-body text-dark">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content }}</p>
+            </div>
+                 <div class="card-footer bg-transparent border-dark mb-3">
+                      Posted by: {{post.author}} <br>
+                      Posted on: {{post.date_added}}
+                 </div>
+        </div>
+    </div>
+
+
+
+    <div class="container mt-4">
+        <h4>Add a comment</h4>
+        <form method="POST">
+            <div class="mb-3">
+                <textarea class="comment-textarea" name="comment" rows="5" placeholder="Your comment here"></textarea>
+            </div>
+            <button type="submit" class="green-button">Submit</button>
+        </form>
+    </div>
+
+
+    <!-- Display comments here -->
+    <div class="container mt-4">
+        <h4>Comments</h4>
+        {% for comment in comments %}
+            <div class="card border-dark mb-3 card-forum">
+                <div class="card-body text-dark">
+                    <p class="card-text">{{ comment.content }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-dark mb-3">
+                    Comment by: {{ comment.author.username if comment.author else "Unknown" }} <br>
+                    Commented on: {{ comment.date_added }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

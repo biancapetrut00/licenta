@@ -1,0 +1,186 @@
+/* styles.css */
+
+.category-button {
+    border-color: #007BFF;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.category-button:hover {
+    background-color: #7EAA92;
+    color: white;
+    border-color: #7EAA92;
+}
+
+.category-button.active,
+.category-button:focus {
+    background-color: #7EAA92;
+    color: white;
+    border-color: #7EAA92;
+}
+
+.custom-submit-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.custom-submit-button:hover {
+    background-color: #7EAA92;
+    color: white;
+    border-color: #7EAA92;
+}
+
+
+
+
+/* Custom styles for forum post cards */
+.card-forum {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ECE5DF; /* Slightly darker cream color */
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Increased shadow intensity */
+    transition: box-shadow 0.3s;
+}
+
+.card-forum:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Increased shadow intensity on hover */
+}
+
+.card-forum .card-header {
+    background-color: #7EAA92; /* Soft green color */
+    color: white;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 8px 16px;
+}
+
+.card-forum .card-body {
+    padding: 16px;
+}
+
+.card-forum .card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-forum .card-text {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-forum .card-footer {
+    background-color: #ECE5DF; /* Slightly darker cream color */
+    border-top: 1px solid #ddd; /* Add top border */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 8px 16px;
+}
+
+
+
+/* Style for Sign Up button */
+.green-button {
+    background-color: #7EAA92; /* Soft green color */
+    border-color: #7EAA92;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    text-decoration: none;
+}
+
+.green-button:hover {
+    background-color: #5D8565; /* Darker green on hover */
+    border-color: #5D8565;
+}
+
+
+/* Custom style for the comment textarea */
+.comment-textarea {
+    resize: vertical; /* Allow vertical resizing */
+    width: 100%; /* Full width */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.comment-textarea:focus {
+    border-color: #7EAA92; /* Apply a different border color when focused */
+}
+
+
+/* Custom style for dropdown */
+.dropdown-style {
+    width: 100%; /* Full width */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Rounded corners */
+    background-color: white; /* Background color */
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+/* Apply different style when the dropdown is focused */
+.dropdown-style:focus {
+    border-color: #7EAA92;
+    outline: none; /* Remove default outline */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Increase shadow on focus */
+}
+
+.form-label {
+    font-weight: 350;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.logo-img {
+    width: 40px; /* Adjust the width as needed */
+    height: auto;
+    margin-right: 10px; /* Add spacing between the logo and text */
+}
+
+.math-symbol-btn {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    background-color: #E7D7D2; /* Slightly darker background color */
+    border: none;
+    border-radius: 50%;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.math-symbol-btn:hover {
+    background-color: #CBB8B3; /* Slightly darker hover color */
+}
+
+
+.math-symbol-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px; /* Adjust the margin as needed */
+    max-width: 500px;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
