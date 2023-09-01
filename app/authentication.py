@@ -2,8 +2,11 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from .models import User
 from . import db
+from flask_bcrypt import Bcrypt, check_password_hash
 
 authentication = Blueprint('authentication', __name__)
+
+bcrypt = Bcrypt()
 
 
 
@@ -35,7 +38,8 @@ def signup():
         elif len(password)>30:
             flash('Password cannot exceed 30 characters', 'error')
         else:
-            user = User(username=username, email=email, password=password)
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+            user = User(username=username, email=email, password=hashed_password)
             db.session.add(user)
             db.session.commit()
             print("created user", flush=True)
@@ -56,8 +60,7 @@ def login():
 
         user = User.query.filter_by(username=username).first()
         if user:
-            print('found user')
-            if user.password == password:
+            if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.index'))

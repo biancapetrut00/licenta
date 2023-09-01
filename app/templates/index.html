@@ -4,10 +4,58 @@
 
 
 <section class="welcome-banner">
-        <div class="welcome-text">
-            <h1>Welcome to Study Help!</h1>
-            <p>Your go-to platform for Computer Science and Mathematics.</p>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="welcome-text">
+                    <h1 class="display-4">Welcome to Study Help!</h1>
+                    <p class="lead">Your go-to platform for Computer Science and Mathematics.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='images/banner.png') }}" alt="Welcome Banner Image" class="img-fluid" style="height: 280px;">
+            </div>
         </div>
+    </div>
+</section>
+<section class="feature-buttons">
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height: 100vh;">
+            <div class="col-md-4">
+                <a href="/forum" class="feature-button btn btn-primary btn-lg btn-block">
+                    <div class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/forum.png') }}" alt="Forum" style="height: 120px;">
+                    </div>
+                    <div class="feature-text">
+                        <h2>Forum</h2>
+                        <p>Engage in discussions and ask questions in the community forum</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/lectures" class="feature-button btn btn-success btn-lg btn-block">
+                    <div class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/lecture.png') }}" alt="Lectures" style="height: 120px;">
+                    </div>
+                    <div class="feature-text">
+                        <h2>Lectures</h2>
+                        <p>Access a variety of lectures and course materials tailored to our subjects</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/quizzes" class="feature-button btn btn-warning btn-lg btn-block">
+                    <div class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/quiz.png') }}" alt="Quizzes" style="height: 120px;">
+                    </div>
+                    <div class="feature-text">
+                        <h2>Quizzes</h2>
+                        <p>Challenge yourself and test your knowledge with interactive quizzes</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
 
 {% endblock %}

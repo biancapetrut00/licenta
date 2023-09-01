@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>{{ quiz.title }}</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                {% if category == 'quiz_result' %}
+                <div class="alert alert-info">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+        <form method="POST">
+            {% for question in quiz.questions %}
+            <div class="mb-3">
+                <label class="form-label">{{ question.text }}</label>
+                {% for option in question.options %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question{{ question.id }}" value="{{ option.id }}">
+                    <label class="form-check-label">{{ option.text }}</label>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="green-button">Submit Quiz</button>
+        </form>
+    </div>
+{% endblock %}

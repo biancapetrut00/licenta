@@ -184,3 +184,93 @@
     align-items: center;
 }
 
+a.text-decoration-none {
+  color: black;
+}
+
+/* Change the link color to black on hover */
+a.text-decoration-none:hover {
+  color: black;
+}
+
+.feature-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -25vh;
+}
+
+.feature-button {
+    background-color: #D4E2D4; /* Soft color */
+    color: #333;
+    border: none;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px;
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.feature-button:nth-child(2) {
+    background-color: #D4E2D4; /* Soft color */
+}
+
+.feature-button:nth-child(3) {
+    background-color: #D4E2D4; /* Soft color */
+}
+
+.feature-button:hover {
+    background-color: #B8CBBF; /* Slightly darker version of soft color */
+    transform: scale(1.05);
+    box-shadow: 0px 12px 18px rgba(0, 0, 0, 0.3);
+    color: #333;
+}
+
+
+/* CSS for the lightbox container */
+#lightbox-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    z-index: 9999;
+    overflow: auto;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    text-align: center; /* Center the content horizontally and vertically */
+}
+
+/* CSS for the lightbox content */
+.lightbox-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 95%; /* Adjust this value to control the maximum width */
+    max-height: 95%; /* Adjust this value to control the maximum height */
+    background-color: transparent; /* Transparent background */
+    padding: 20px;
+    text-align: center;
+    overflow: auto;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+}
+/* Close button style (you can customize this further) */
+.close-lightbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+

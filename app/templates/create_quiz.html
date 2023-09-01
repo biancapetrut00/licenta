@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Create Quiz</h1>
+  <form method="POST" action="/create_quiz">
+    <div class="mb-3">
+      <label for="quiz_title" class="form-label">Quiz Title:</label>
+      <input type="text" id="quiz_title" name="quiz_title" class="form-control" required>
+    </div>
+
+    <div id="questions">
+      <div class="question">
+        <h3>Question 1</h3>
+        <div class="mb-3">
+          <label for="question_text" class="form-label">Question:</label>
+          <input type="text" class="form-control question_input" name="question[0][text]" required>
+        </div>
+
+        <div class="options">
+          <div class="option mb-2">
+            <label for="option" class="form-label">Option:</label>
+            <input type="text" class="form-control option_input" name="question[0][options][0][option]" required>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="question[0][options][0][is_correct]">
+              <label class="form-check-label">Correct</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary add_option">Add Option</button>
+      </div>
+    </div>
+
+    <button type="button" id="add_question" class="btn btn-primary mt-2">Add Question</button>
+    <button type="submit" class="btn btn-success mt-2">Create Quiz</button>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const addQuestionButton = document.getElementById('add_question');
+  const questionsContainer = document.getElementById('questions');
+  let questionCounter = 1;
+
+  addQuestionButton.addEventListener('click', function() {
+    const questionDiv = document.createElement('div');
+    questionDiv.classList.add('question', 'mb-4');
+    questionDiv.innerHTML = `
+      <h3>Question ${++questionCounter}</h3>
+      <div class="mb-3">
+        <label for="question_text" class="form-label">Question:</label>
+        <input type="text" class="form-control question_input" name="question[${questionCounter - 1}][text]" required>
+      </div>
+
+      <div class="options">
+        <div class="option mb-2">
+          <label for="option" class="form-label">Option:</label>
+          <input type="text" class="form-control option_input" name="question[${questionCounter - 1}][options][0][option]" required>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="question[${questionCounter - 1}][options][0][is_correct]">
+            <label class="form-check-label">Correct</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary add_option">Add Option</button>
+    `;
+    questionsContainer.appendChild(questionDiv);
+  });
+
+  questionsContainer.addEventListener('click', function(event) {
+    if (event.target.classList.contains('add_option')) {
+      const questionDiv = event.target.closest('.question');
+      const optionsContainer = questionDiv.querySelector('.options');
+      const optionCounter = optionsContainer.querySelectorAll('.option').length + 1;
+
+      const questionIndex = questionCounter - 1;
+      const optionDiv = document.createElement('div');
+      optionDiv.classList.add('option', 'mb-2');
+      optionDiv.innerHTML = `
+        <label for="option" class="form-label">Option:</label>
+        <input type="text" class="form-control option_input" name="question[${questionIndex}][options][${optionCounter - 1}][option]" required>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" name="question[${questionIndex}][options][${optionCounter - 1}][is_correct]">
+          <label class="form-check-label">Correct</label>
+        </div>
+      `;
+
+      optionsContainer.appendChild(optionDiv);
+    }
+  });
+});
+</script>
+
+{% endblock %}

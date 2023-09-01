@@ -9,10 +9,21 @@
                 <h5 class="card-title">{{ post.title }}</h5>
                 <p class="card-text">{{ post.content }}</p>
             </div>
-                 <div class="card-footer bg-transparent border-dark mb-3">
-                      Posted by: {{post.author}} <br>
-                      Posted on: {{post.date_added}}
-                 </div>
+            <div class="card-footer bg-transparent border-dark mb-3">
+                Posted by: {{ post.author }} <br>
+                {{ post.isAdmin }} <br>
+                Posted on: {{ post.date_added }}
+                {% if current_user and (current_user.id == postUser or current_user.isAdmin) %}
+                <div class="float-end">
+                    <form method="POST" action="{{ url_for('views.delete_post', post_id=post.id) }}">
+                        <button type="submit" class="btn btn-danger" style="border-radius: 10px; padding: 8px 16px;">Delete</button>
+                    </form>
+                </div>
+
+
+                {% endif %}
+             </div>
+
         </div>
     </div>
 
@@ -21,8 +32,46 @@
     <div class="container mt-4">
         <h4>Add a comment</h4>
         <form method="POST">
-            <div class="mb-3">
-                <textarea class="comment-textarea" name="comment" rows="5" placeholder="Your comment here"></textarea>
+            <div>
+                  <div class="center-container">
+                        <div class="math-symbol-container">
+                            <button class="math-symbol-btn" data-math-symbol="√">√</button>
+                            <button class="math-symbol-btn" data-math-symbol="²">²</button>
+                            <button class="math-symbol-btn" data-math-symbol="³">³</button>
+                            <button class="math-symbol-btn" data-math-symbol="π">π</button>
+                            <button class="math-symbol-btn" data-math-symbol="∑">∑</button>
+                            <button class="math-symbol-btn" data-math-symbol="∫">∫</button>
+                            <button class="math-symbol-btn" data-math-symbol="∆">∆</button>
+                            <button class="math-symbol-btn" data-math-symbol="≠">≠</button>
+                            <button class="math-symbol-btn" data-math-symbol="≈">≈</button>
+                            <button class="math-symbol-btn" data-math-symbol="°">°</button>
+                            <button class="math-symbol-btn" data-math-symbol="±">±</button>
+                            <button class="math-symbol-btn" data-math-symbol="π">π</button>
+
+                            <button class="math-symbol-btn" data-math-symbol="≤">≤</button>
+                            <button class="math-symbol-btn" data-math-symbol="≥">≥</button>
+                            <button class="math-symbol-btn" data-math-symbol="∞">∞</button>
+                            <button class="math-symbol-btn" data-math-symbol="∝">∝</button>
+                            <button class="math-symbol-btn" data-math-symbol="∠">∠</button>
+                            <button class="math-symbol-btn" data-math-symbol="⊥">⊥</button>
+                            <button class="math-symbol-btn" data-math-symbol="∼">∼</button>
+                            <button class="math-symbol-btn" data-math-symbol="∩">∩</button>
+                            <button class="math-symbol-btn" data-math-symbol="∪">∪</button>
+                            <button class="math-symbol-btn" data-math-symbol="⋂">⋂</button>
+                            <button class="math-symbol-btn" data-math-symbol="⋃">⋃</button>
+
+                            <button class="math-symbol-btn" data-math-symbol="∇">∇</button>
+                            <button class="math-symbol-btn" data-math-symbol="∓">∓</button>
+                            <button class="math-symbol-btn" data-math-symbol="≡">≡</button>
+                            <button class="math-symbol-btn" data-math-symbol="≜">≜</button>
+                            <button class="math-symbol-btn" data-math-symbol="≅">≅</button>
+
+                            <!-- Add more buttons for other math symbols -->
+                        </div>
+                  </div>
+            </div>
+            <div class="mb-3" style="margin-top: 25px;">
+                <textarea class="comment-textarea" id="comment" name="comment" rows="5" placeholder="Your comment here"></textarea>
             </div>
             <button type="submit" class="green-button">Submit</button>
         </form>
@@ -38,10 +87,35 @@
                     <p class="card-text">{{ comment.content }}</p>
                 </div>
                 <div class="card-footer bg-transparent border-dark mb-3">
-                    Comment by: {{ comment.author.username if comment.author else "Unknown" }} <br>
+                    Comment by: {{ comment.author }} <br>
+                    {{ comment.isAdmin }} <br>
                     Commented on: {{ comment.date_added }}
+                    {% if current_user and (current_user.username == comment.author or current_user.isAdmin) %}
+                        <form method="POST" action="{{ url_for('views.delete_comment', comment_id=comment.id) }}">
+                            <button type="submit" class="btn btn-danger" style="border-radius: 10px; padding: 8px 16px;">Delete</button>
+                        </form>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
     </div>
+
+<script>
+    // Handling symbols
+        document.addEventListener('DOMContentLoaded', function () {
+            const mathSymbolButtons = document.querySelectorAll('.math-symbol-btn');
+            const mathTextarea = document.getElementById('comment');
+
+            mathSymbolButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the default form submission
+                    const mathSymbol = this.getAttribute('data-math-symbol');
+                    const cursorPos = mathTextarea.selectionStart;
+                    const currentValue = mathTextarea.value;
+                    const newValue = currentValue.substring(0, cursorPos) + mathSymbol + currentValue.substring(cursorPos);
+                    mathTextarea.value = newValue;
+                });
+            });
+        });
+</script>
 {% endblock %}

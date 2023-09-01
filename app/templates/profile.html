@@ -27,4 +27,44 @@
         </form>
     </div>
     {% endif %}
+
+
+<!-- User-specific content -->
+    <div class="container mt-4">
+        <h3>Update Profile</h3>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="newUsername" class="form-label">New Username</label>
+                <input type="text" class="form-control" id="newUsername" name="newUsername">
+            </div>
+            <button type="submit" class="green-button">Update Username</button>
+        </form>
+
+        <form method="POST">
+            <div class="mb-3">
+                <label for="newEmail" class="form-label">New Email</label>
+                <input type="email" class="form-control" id="newEmail" name="newEmail">
+            </div>
+            <button type="submit" class="green-button">Update Email</button>
+        </form>
+
+        <form method="POST">
+            <div class="mb-3">
+                <label for="currentPassword" class="form-label">Current Password</label>
+                <input type="password" class="form-control" id="currentPassword" name="currentPassword">
+            </div>
+            <div class="mb-3">
+                <label for="newPassword" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword">
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+            </div>
+            <button type="submit" class="green-button">Update Password</button>
+        </form>
+    </div>
+
+
+
 {% endblock %}

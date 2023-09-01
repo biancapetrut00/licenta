@@ -6,8 +6,8 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
-                <h2>Create New Post</h2>
-                <form method="POST">
+                <h2>Upload Lecture</h2>
+                <form method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="comment-textarea" id="title" name="title" required>
@@ -24,48 +24,10 @@
                         <select class="dropdown-style" id="category" name="category">
                             <!-- Categories will be populated using JavaScript -->
                         </select>
-                    </div>
-
-                    <div class="center-container">
-                        <div class="math-symbol-container">
-                            <button class="math-symbol-btn" data-math-symbol="√">√</button>
-                            <button class="math-symbol-btn" data-math-symbol="²">²</button>
-                            <button class="math-symbol-btn" data-math-symbol="³">³</button>
-                            <button class="math-symbol-btn" data-math-symbol="π">π</button>
-                            <button class="math-symbol-btn" data-math-symbol="∑">∑</button>
-                            <button class="math-symbol-btn" data-math-symbol="∫">∫</button>
-                            <button class="math-symbol-btn" data-math-symbol="∆">∆</button>
-                            <button class="math-symbol-btn" data-math-symbol="≠">≠</button>
-                            <button class="math-symbol-btn" data-math-symbol="≈">≈</button>
-                            <button class="math-symbol-btn" data-math-symbol="°">°</button>
-                            <button class="math-symbol-btn" data-math-symbol="±">±</button>
-                            <button class="math-symbol-btn" data-math-symbol="π">π</button>
-
-                            <button class="math-symbol-btn" data-math-symbol="≤">≤</button>
-                            <button class="math-symbol-btn" data-math-symbol="≥">≥</button>
-                            <button class="math-symbol-btn" data-math-symbol="∞">∞</button>
-                            <button class="math-symbol-btn" data-math-symbol="∝">∝</button>
-                            <button class="math-symbol-btn" data-math-symbol="∠">∠</button>
-                            <button class="math-symbol-btn" data-math-symbol="⊥">⊥</button>
-                            <button class="math-symbol-btn" data-math-symbol="∼">∼</button>
-                            <button class="math-symbol-btn" data-math-symbol="∩">∩</button>
-                            <button class="math-symbol-btn" data-math-symbol="∪">∪</button>
-                            <button class="math-symbol-btn" data-math-symbol="⋂">⋂</button>
-                            <button class="math-symbol-btn" data-math-symbol="⋃">⋃</button>
-
-                            <button class="math-symbol-btn" data-math-symbol="∇">∇</button>
-                            <button class="math-symbol-btn" data-math-symbol="∓">∓</button>
-                            <button class="math-symbol-btn" data-math-symbol="≡">≡</button>
-                            <button class="math-symbol-btn" data-math-symbol="≜">≜</button>
-                            <button class="math-symbol-btn" data-math-symbol="≅">≅</button>
-
-                            <!-- Add more buttons for other math symbols -->
+                        <div class="mb-3">
+                            <label class="form-label"><b>File</b></label>
+                            <input class="form-control form-control-lg" type="file" name="pdf_file">
                         </div>
-
-                    </div>
-                    <div class="mb-3">
-                        <label for="content" class="form-label">Content</label>
-                        <textarea class="comment-textarea" id="content" name="content" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="green-button">Submit</button>
                 </form>

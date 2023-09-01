@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container ">
+  <h1 class="mt-5 mb-4">Available Quizzes</h1>
+  <ul class="list-group ">
+    <div class="col-md-9"> <!-- Add this div -->
+        {% if is_teacher %}
+            <a href="/create_quiz" class="green-button" id="uploadQuizbtn">Upload Quiz</a>
+        {% endif %}
+        <div class="mb-4"></div> <!-- Add this div with mb-4 for bottom margin -->
+    </div>
+
+    {% for quiz in quizzes %}
+      <li class="list-group-item card-forum">
+        <a href="{{ url_for('quiz.take_quiz', quiz_id=quiz.id) }}" class="text-decoration-none">{{ quiz.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
